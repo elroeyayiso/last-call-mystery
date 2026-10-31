@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#171516" />
+  <meta name="description" content="A real-time mystery party game. Join the case, share clues, and catch the thief." />
+  <title>Last Call — Who Did It?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/game-ui.css" />
+</head>
+<body>
+  <div class="grain"></div>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Last Call home"><span class="brand-mark">LC</span><span>LAST CALL<small>THE MYSTERY PARTY</small></span></a>
+    <div class="top-note"><span class="live-dot"></span> A CASE IS WAITING</div>
+  </header>
+
+  <main>
+    <section id="home" class="home-view">
+      <div class="hero-copy">
+        <div class="eyebrow"><span>CASE FILE NO. 014</span><span class="rule-line"></span><span>THE MANSION</span></div>
+        <h1>One of you<br /><em>did it.</em></h1>
+        <p class="lead">A priceless diamond vanished in the dead of night. Everyone has a story. One person is lying.</p>
+        <div class="hero-meta"><span>2–6 PLAYERS</span><i></i><span>10–15 MIN</span><i></i><span>NO ACCOUNT NEEDED</span></div>
+        <div class="mansion-art" aria-hidden="true">
+          <div class="art-top"><span>LIVE CASE ENVIRONMENT</span><span>23:47:08</span></div>
+          <svg viewBox="0 0 620 210" role="presentation">
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#1e2732"/><stop offset="1" stop-color="#34313b"/></linearGradient>
+              <linearGradient id="fog" x1="0" x2="1"><stop stop-color="#b7a27e" stop-opacity="0"/><stop offset=".5" stop-color="#b7a27e" stop-opacity=".35"/><stop offset="1" stop-color="#b7a27e" stop-opacity="0"/></linearGradient>
+            </defs>
+            <rect width="620" height="210" fill="url(#sky)"/>
+            <circle cx="510" cy="45" r="20" fill="#e7d3a6" opacity=".82"/><circle cx="510" cy="45" r="31" fill="#e7d3a6" opacity=".08"/>
+            <g fill="#e7d3a6" opacity=".65"><circle cx="70" cy="34" r="1.5"/><circle cx="132" cy="70" r="1"/><circle cx="246" cy="35" r="1.3"/><circle cx="390" cy="54" r="1"/><circle cx="567" cy="105" r="1.5"/></g>
+            <path d="M0 160 78 131l41 13 61-39 50 17 48-45 40 20 56-42 54 43 49-14 61 35 82-9v60H0Z" fill="#20222b"/>
+            <path d="M145 164V94l61-42 60 42v70Zm110 0V79l76-54 79 54v85Zm142 0v-58l51-37 52 37v58Z" fill="#15171f" stroke="#716052" stroke-width="2"/>
+            <path d="m134 96 72-53 72 53m-14-16 57-65 83 62m-8 25 51-43 63 44" fill="none" stroke="#a98957" stroke-width="3"/>
+            <g fill="#d2a65f"><rect class="window-light" x="174" y="102" width="14" height="23"/><rect x="226" y="102" width="14" height="23"/><rect x="293" y="89" width="16" height="25"/><rect class="window-light" x="350" y="89" width="16" height="25"/><rect x="424" y="117" width="14" height="22"/><rect class="window-light" x="470" y="117" width="14" height="22"/></g>
+            <path d="M0 170c120-20 177 21 294 4s220-12 326 4v32H0Z" fill="#13151b"/>
+            <path class="fog-line" d="M15 176c80-19 119 11 198-3s115-16 185 0 140 7 222-5" fill="none" stroke="url(#fog)" stroke-width="9"/>
+            <path d="M306 166v-21a8 8 0 0 1 16 0v21" fill="#c04e42"/><circle cx="314" cy="139" r="10" fill="#c04e42" opacity=".18"/>
+          </svg>
+          <div class="art-caption"><span>VALE MANSION</span><span>•</span><span>THE DIAMOND IS GONE</span></div>
+        </div>
+      </div>
+      <div class="entry-card">
+        <div class="card-topline"><span>YOUR INVITATION</span><span class="serial">LC / 01</span></div>
+        <h2>Join the investigation.</h2>
+        <label for="nickname">YOUR NAME</label>
+        <input id="nickname" maxlength="20" autocomplete="nickname" placeholder="Detective name" />
+        <button id="create-room" class="button button-primary">Create a room <span>↗</span></button>
+        <div class="or"><span></span> OR JOIN AN EXISTING CASE <span></span></div>
+        <div class="join-row"><input id="room-code" maxlength="6" placeholder="ROOM CODE" aria-label="Room code" /><button id="join-room" class="button button-quiet">Join <span>→</span></button></div>
+        <p id="entry-error" class="error" role="alert"></p>
+        <div class="entry-footer"><span>◇</span> Share the room code with your crew.</div>
+      </div>
+      <div class="hero-foot"><span>AN INTERACTIVE WHODUNIT</span><span>THE TRUTH IS IN THE DETAILS ↓</span></div>
+    </section>
+
+    <section id="game" class="game-view hidden">
+      <div class="game-heading">
+        <div><div class="eyebrow"><span id="case-kicker">CASE FILE NO. 014</span><span class="rule-line"></span><span id="round-label">ROUND 01</span></div><h1 id="game-title">The case begins.</h1><p id="game-subtitle">Waiting for the room to fill.</p></div>
+        <div class="room-box"><span>ROOM CODE</span><strong id="display-code">······</strong><button id="copy-code" title="Copy room code">COPY ↗</button></div>
+      </div>
+      <div class="status-strip"><div class="phase-state"><span class="live-dot"></span><span id="phase-label">LOBBY</span></div><div id="timer" class="timer">—:—</div><div id="connection" class="connection">CONNECTED</div></div>
+      <div class="game-layout">
+        <section class="main-column">
+          <div id="notice" class="notice hidden" role="status"></div>
+          <div id="lobby-panel" class="panel lobby-panel">
+            <div class="section-label">THE GUEST LIST <span id="player-count">0 / 6</span></div>
+            <div id="players" class="players-list"></div>
+            <div id="lobby-actions" class="lobby-actions"></div>
+            <p class="fine-print">A room needs at least two players. Best played with 4–6.</p>
+          </div>
+          <div id="round-panel" class="panel hidden">
+            <div id="scenario-line" class="scenario-line"></div>
+            <div id="private-card" class="private-card"></div>
+            <div id="phase-content"></div>
+          </div>
+          <div id="reveal-panel" class="panel hidden"></div>
+        </section>
+        <aside class="side-column">
+          <div class="panel roster-panel"><div class="section-label">AT THE MANSION <span id="roster-count">00</span></div><div id="roster" class="roster-list"></div></div>
+          <div class="panel rules-panel"><div class="section-label">HOW TO PLAY <span>3 STEPS</span></div><ol><li><b>Listen closely.</b> Every player gets a private role and clue.</li><li><b>Share your story.</b> Tell the truth, hold back, or bluff.</li><li><b>Make your accusation.</b> Vote for the thief before time runs out.</li></ol><p class="rules-foot">Votes are private until everyone has chosen.</p></div>
+          <div class="side-note">THE BEST LIE IS<br />ALMOST THE TRUTH.</div>
+        </aside>
+      </div>
+      <footer class="game-footer"><span>LAST CALL · A MYSTERY PARTY GAME</span><button id="leave-room">LEAVE ROOM ↗</button></footer>
+    </section>
+  </main>
+  <div id="toast" class="toast" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
